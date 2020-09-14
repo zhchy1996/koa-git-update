@@ -2,10 +2,11 @@
  * @Author: chengyuzhang 
  * @Date: 2020-09-07 19:37:12 
  * @Last Modified by: chengyuzhang
- * @Last Modified time: 2020-09-12 18:05:06
+ * @Last Modified time: 2020-09-14 15:20:00
  */
 
-const exec = require('child_process').execSync
+const exec = require('child_process').exec
+const send = require('../lib/send-mail');
 
 class UserController {
     // 用户登录
@@ -15,8 +16,13 @@ class UserController {
             status: 'OK'
         }
 
-        exec('bash ./sh/build.sh',(...rest) => {
-            console.log(rest);
+        exec('bash ./sh/build.sh',(err,stdout,stderr) => {
+            if (stderr || err) {
+                console.error(stderr || err)
+                send('error', stderr)
+            } else {
+                console.log(stdout)
+            }
         });
     }
     
