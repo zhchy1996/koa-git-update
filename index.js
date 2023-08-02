@@ -2,14 +2,17 @@
  * @Author: chengyuzhang 
  * @Date: 2020-09-07 19:39:00 
  * @Last Modified by: chengyuzhang
- * @Last Modified time: 2020-10-23 16:22:41
+ * @Last Modified time: 2023-08-02 11:43:56
  */
 
+const path = require('path');
 const koa = require('koa');
 const router = require('koa-router')();
 const bodyParser = require('koa-bodyparser');
 const apiRouter = require('./router');
 const proxy = require('./proxy');
+const koaStatic = require('koa-static');
+
 
 const app = new koa();
 
@@ -22,5 +25,6 @@ app.use(index);
 app.use(bodyParser());
 app.use(proxy);
 app.use(apiRouter.routes());
+app.use(koaStatic(path.resolve(__dirname, '.')));
 
-app.listen(3001);
+app.listen(8888);

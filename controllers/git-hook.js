@@ -2,11 +2,11 @@
  * @Author: chengyuzhang 
  * @Date: 2020-09-07 19:37:12 
  * @Last Modified by: chengyuzhang
- * @Last Modified time: 2020-09-14 15:20:00
+ * @Last Modified time: 2023-08-02 11:28:29
  */
 
 const exec = require('child_process').exec
-const send = require('../lib/send-mail');
+// const send = require('../lib/send-mail');
 
 class UserController {
     // 用户登录
@@ -16,14 +16,14 @@ class UserController {
             status: 'OK'
         }
 
-        exec('bash ./sh/build.sh',(err,stdout,stderr) => {
-            if (stderr || err) {
-                console.error(stderr || err)
-                send('error', stderr)
-            } else {
-                console.log(stdout)
-            }
-        });
+    //     exec('bash ./sh/build.sh',(err,stdout,stderr) => {
+    //         if (stderr || err) {
+    //             console.error(stderr || err)
+    //             send('error', stderr)
+    //         } else {
+    //             console.log(stdout)
+    //         }
+    //     });
     }
     
     // 用户信息
